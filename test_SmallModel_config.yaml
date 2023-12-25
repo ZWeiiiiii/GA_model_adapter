@@ -1,0 +1,124 @@
+dataloader:
+  batch_size: 128
+  dataset: FashionMNIST
+  deterministic: true
+  num_classes: 10
+  path: /zhangw/folder/data/FashionMNIST/
+  serialized: false
+  val_split: 0.0
+  workers: 8
+device:
+  gpu:
+  - 3
+  - 6
+  type: cpu
+epochs: 5
+eval: false
+final_eval_times: 10
+img_quant_flag: false
+knowledge_distillation:
+  kl_param: 0
+  layer_param: 0
+  type: 1
+log:
+  num_best_scores: 3
+  print_freq: 20
+lr_scheduler:
+  gamma: 0.1
+  milestones:
+  - 40
+  mode: multi_step
+  update_per_batch: false
+model:
+  arch: CNN
+  checkpoint: /zhangw/folder/adapter231208/test_models/CNN_best.pth.tar
+  criterion: null
+  pre_trained: false
+  quant_checkpoint: null
+  strict: false
+name: CNN
+onnx: false
+optimizer:
+  learning_rate: 0.001
+  momentum: 0.9
+  op_name: SGD
+  weight_decay: 0.0001
+output_dir: ga_cnn
+quan:
+  avgpool:
+    all_positive: true
+    bit: 8
+    quant_flag: true
+    symmetric: false
+  conv:
+    act:
+      all_positive: true
+      bit: 4
+      init_mode: percent
+      init_percent: 0.99
+      quant_name: lsq
+      symmetric: false
+    act_out:
+      quant_name:
+    in_quant_low_bit: 4
+    input_v: 136
+    int_flag: false
+    out_scale_test: true
+    weight:
+      all_positive: false
+      bit: 2
+      init_mode: percent
+      init_percent: 0.98
+      noise_range: max_min
+      noise_scale: 0.1
+      per_channel: false
+      quant_name: lsq
+      symmetric: true
+  excepts:
+  fc:
+    act:
+      all_positive: true
+      bit: 4
+      init_mode: percent
+      init_percent: 0.99
+      quant_name: lsq
+      symmetric: false
+    act_out:
+      quant_name:
+    in_quant_low_bit: 4
+    input_v: 136
+    int_flag: false
+    out_scale_test: true
+    weight:
+      all_positive: false
+      bit: 2
+      init_mode: percent
+      init_percent: 0.98
+      noise_range: max_min
+      noise_scale: 0.15
+      per_channel: false
+      quant_name: lsq
+      symmetric: true
+  img_quant_bit: 4
+  img_quant_flag: false
+  in_quant_low_bit: 0
+  init_batch: false
+  init_batch_num: 1
+resume:
+  lean: false
+  path: null
+saved_feature_layer: []
+saved_image_num: 10
+seed: 0
+structure:
+  add_quant:
+    all_positive: false
+    bit: 10
+    quant_method: 0
+    shift: 1
+    symmetric: true
+  bias_move: false
+  bn_fused: false
+  func_quant: true
+  insert_quantizer: null
+train_wi_kd: false
